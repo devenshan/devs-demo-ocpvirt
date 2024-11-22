@@ -1,50 +1,51 @@
-#    - name: Shutdown VM
-#      redhat.openshift_virtualization.kubevirt_vm:
-#        state: present
-#        name: rhel-9-mina-22
-#        namespace: mina
-#        running: false
-#        validate_certs: false
-#        wait: true
-#        wait_timeout: 300
-#
-#    - pause:
-#        seconds: 30
-#
-#    - name: Relabel the VM to Live
-#      redhat.openshift_virtualization.kubevirt_vm:
-#        state: present
-#        name: rhel-9-mina-22
-#        namespace: mina
-#        labels:
-#          app: cbademo
-#          phase: live
-#        validate_certs: false
-#        running: true
-#        wait: true
-#        wait_timeout: 300
+---
+    - name: Shutdown VM
+      redhat.openshift_virtualization.kubevirt_vm:
+        state: present
+        name: "{{ v_vm_name }}"
+        namespace: "{{ v_vm_namespace }}"
+        running: false
+        validate_certs: false
+        wait: true
+        wait_timeout: 300
 
-#    - name: Ensure the VM is stopped
-#      redhat.openshift.k8s:
-#        api_version: kubevirt.io/v1
-#        kind: VirtualMachine
-#        name: rhel-9-mina-22
-#        namespace: mina
-#        merge_type: merge
-#        validate_certs: false
-#        resource_definition:
-#          spec:
-#            running: false
-#      register: stop_result
-#
-#    - name: Wait for the VM to stop
-#      k8s_info:
-#        api_version: kubevirt.io/v1
-#        kind: VirtualMachineInstance
-#        namespace: mina
-#        name: rhel-9-mina-22
-#        validate_certs: false
-#      register: vmi_info
-#      until: vmi_info.resources | length == 0
-#      retries: 10
-#      delay: 10
+    - pause:
+        seconds: 30
+
+    - name: Re-label the VM to Live
+      redhat.openshift_virtualization.kubevirt_vm:
+        state: present
+        name: "{{ v_vm_name }}"
+        namespace: "{{ v_vm_namespace }}"
+        labels:
+          app: "{{ v_vm_label }}"
+          phase: live
+        validate_certs: false
+        running: true
+        wait: true
+        wait_timeout: 300
+
+    - name: Ensure the VM is stopped
+      redhat.openshift.k8s:
+        api_version: kubevirt.io/v1
+        kind: VirtualMachine
+        name: "{{ v_vm_name }}"
+        namespace: "{{ v_vm_namespace }}"
+        merge_type: merge
+        validate_certs: false
+        resource_definition:
+          spec:
+            running: false
+      register: stop_result
+
+    - name: Wait for the VM to stop
+      k8s_info:
+        api_version: kubevirt.io/v1
+        kind: VirtualMachineInstance
+        namespace: "{{ v_vm_namespace }}"
+        name: "{{ v_vm_name }}"
+        validate_certs: false
+      register: vmi_info
+      until: vmi_info.resources | length == 0
+      retries: 10
+      delay: 10
