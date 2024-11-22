@@ -1,0 +1,109 @@
+---
+    - name: Generate the VM random password
+      set_fact:
+        v_vm_vnc_secret: >-
+          {{ (lookup('password', '/dev/null length=4 chars=ascii_lowercase+digits') + '-' +
+              lookup('password', '/dev/null length=4 chars=ascii_lowercase+digits') + '-' +
+              lookup('password', '/dev/null length=4 chars=ascii_lowercase+digits')) }}
+
+    - name: Create a VirtualMachine on OCP Virt
+      redhat.openshift_virtualization.kubevirt_vm:
+        state: present
+        name: "{{ v_vm_name }}"
+        namespace: "{{ v_vm_namespace }}"
+        labels:
+          app: "{{ v_vm_label }}"
+          phase: build
+        instancetype:
+          name: "{{ v_vm_instancetype }}"
+        preference:
+          name: "{{ v_vm_preference }}"
+        validate_certs: false
+        data_volume_templates:
+          - metadata:
+              name: "{{ v_vm_name }}"
+            spec:
+              sourceRef:
+                kind: DataSource
+                name: "{{ v_vm_datastore }}"
+                namespace: openshift-virtualization-os-images
+              storage:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: "{{ v_vm_os_disk_size }}"
+        spec:
+          accessCredentials:
+            - sshPublicKey:
+                propagationMethod:
+                  noCloud: {}
+                source:
+                  secret:
+                    secretName: ssh-key-vm
+          domain:
+            devices: {}
+          volumes:
+            - dataVolume:
+                name: "{{ v_vm_name }}"
+              name: rootdisk
+            - cloudInitNoCloud:
+                userData: |-
+                  #cloud-config
+                  user: cloud-user
+                  password: "{{ v_vm_vnc_secret }}"
+                  chpasswd: { expire: False }
+              name: cloudinitdisk
+        wait: true
+        wait_timeout: 300
+
+    - pause:
+        seconds: 30
+
+    - name: Get the create VM information
+      redhat.openshift_virtualization.kubevirt_vmi_info:
+        name: "{{ v_vm_name }}"
+        namespace: "{{ v_vm_namespace }}"
+        validate_certs: 'false'
+      register: v_created_vm
+
+    - debug:
+        var: v_created_vm.resources[0]
+
+    - name: Setting host facts
+      ansible.builtin.set_fact:
+        v_cpu_cores: "{{ item.status.currentCPUTopology.cores }}"
+        v_cpu_sockets: "{{ item.status.currentCPUTopology.sockets }}"
+        v_memory_size: "{{ item.status.memory.guestRequested }}"
+        v_guesos_kernel: "{{ item.status.guestOSInfo.kernelRelease }}"
+        v_guesos_version: "{{ item.status.guestOSInfo.versionId }}"
+        v_guesos_name: "{{ item.status.guestOSInfo.prettyName }}"
+        v_net_mac: "{{ item.status.interfaces[0].mac }}"
+        v_net_ipaddr: "{{ item.status.interfaces[0].ipAddress }}"
+        v_vm_state: "{{ item.status.phase }}"
+        v_vm_arch: "{{ item.spec.architecture }}"
+        v_vm_uid: "{{ item.metadata.ownerReferences[0].uid }}"
+        v_vm_name: "{{ item.metadata.name }}"
+        v_vm_namespace: "{{ item.metadata.namespace }}"
+        v_vm_os_type: "{{ item.metadata.annotations['vm.kubevirt.io/os'] }}"
+      loop: "{{ v_created_vm.resources }}"
+
+    - name: Set Stats - Elevate to Workflow level
+      ansible.builtin.set_stats:
+        data:
+          v_cpu_cores: "{{ v_cpu_cores }}"
+          v_cpu_sockets: "{{ v_cpu_sockets }}"
+          v_memory_size: "{{ v_memory_size }}"
+          v_guesos_kernel: "{{ v_guesos_kernel }}"
+          v_guesos_version: "{{ v_guesos_version }}"
+          v_guesos_name: "{{ v_guesos_name }}"
+          v_net_mac: "{{ v_net_mac }}"
+          v_net_ipaddr: "{{ v_net_ipaddr }}"
+          v_vm_state: "{{ v_vm_state }}"
+          v_vm_arch: "{{ v_vm_arch }}"
+          v_vm_uid: "{{ v_vm_uid }}"
+          v_vm_name: "{{ v_vm_name }}"
+          v_vm_namespace: "{{ v_vm_namespace }}"
+          v_vm_os_type: "{{ v_vm_os_type }}"
+        per_host: true
+

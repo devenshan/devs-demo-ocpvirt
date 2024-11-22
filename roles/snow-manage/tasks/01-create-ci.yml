@@ -1,0 +1,24 @@
+---
+
+    - name: Create configuration item (CI) in SNOW
+      servicenow.itsm.configuration_item:
+        name: "{{ v_vm_name }}"
+        sys_class_name: cmdb_ci_server
+        environment: "{{ v_lcy_environment }}"
+        category: Virtual Machine
+        serial_number: "SN123456790"
+        short_description: "Red Hat - CBA Demo"
+        install_status: "Pending Install"
+        operational_status: "Non-Operational"
+        other:
+          manufacturer: "ACME Americas"
+          location: "{{ v_vm_location }}"
+          virtual: true
+      register: new_ci
+
+    - name: Retrieve a CI Details
+      servicenow.itsm.configuration_item_info:
+        name: "{{ v_vm_name }}"
+        sys_class_name: cmdb_ci_server
+      register: result
+

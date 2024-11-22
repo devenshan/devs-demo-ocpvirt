@@ -1,0 +1,24 @@
+---
+    - name: Update configuration item (CI) in SNOW
+      servicenow.itsm.configuration_item:
+        name: "{{ v_vm_name }}"
+        sys_class_name: cmdb_ci_server
+        environment: "{{ v_lcy_environment }}"
+        category: Virtual Machine
+        serial_number: "SN123456790"
+        short_description: "Red Hat - CBA Demo"
+        install_status: "Installed"
+        operational_status: "Ready"
+        ip_address: "{{ v_net_ipaddr }}"
+        mac_address: "{{ v_net_mac }}"
+        other:
+          manufacturer: "ACME Americas"
+          location: "{{ v_vm_location }}"
+          virtual: true
+          ram: "{{ v_memory_size }}"
+          cpu_name: "{{ v_vm_cpu_model }}"
+          cpu_count: "{{ v_cpu_sockets }}"
+          cpu_core_count: "{{ v_cpu_cores }}"
+          cpu_type: "{{ v_vm_arch }}"
+          disk_space: 30
+      register: ci_update
