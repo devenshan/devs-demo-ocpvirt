@@ -1,0 +1,13 @@
+---
+- name: Apply CIS Benchmark security/compliance hardenning to the NEW RHEL 9 VM 
+  hosts: all
+  become: true
+  become_method: sudo
+
+  tasks: 
+
+    - name: Apply RHEL {{ ansible_distribution_major_version }}  CIS Compliance Hardenning
+      ansible.builtin.include_role:
+        name: rhel{{ ansible_distribution_major_version }}-cis
+        tasks_from: rhel{{ ansible_distribution_major_version }}-playbook-cis.yml
+

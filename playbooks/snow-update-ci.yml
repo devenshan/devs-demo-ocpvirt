@@ -15,4 +15,4 @@
     - name: Create VM on OCP cluster
       ansible.builtin.include_role:
         name: snow-manage
-        tasks_from: 01-create-ci.yml
+        tasks_from: 01-update-ci.yml
