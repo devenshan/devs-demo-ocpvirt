@@ -13,5 +13,5 @@
 
     - name: Create VM on OCP cluster
       ansible.builtin.include_role:
-        name: ocpvirt-manage
+        name: ../ocpvirt-manage
         tasks_from: 01-update-vm.yml
