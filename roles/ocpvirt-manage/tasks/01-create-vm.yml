@@ -32,7 +32,7 @@
                   - ReadWriteOnce
                 resources:
                   requests:
-                    storage: "{{ v_vm_os_disk_size }}"Gi
+                    storage: "{{ v_vm_os_disk_size }}Gi"
         spec:
           accessCredentials:
             - sshPublicKey:
