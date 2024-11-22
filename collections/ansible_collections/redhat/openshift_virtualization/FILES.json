@@ -1,0 +1,670 @@
+{
+ "files": [
+  {
+   "name": ".",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "test-requirements.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a416cdc92ce1ee405556e61d0e5c56e55761739b87d8ff95a2cafed2ed6188ff",
+   "format": 1
+  },
+  {
+   "name": "tests",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_get_resources.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "350cc779418879320410e171d2d5c84b9449c904e26b079577b6fc441dfe4315",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_inventory_options.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e99a3315b0c12e6c79b0ce5689a7e9c6c01463df8c541ecf3dd3424f45533cb2",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_format_dynamic_api_exc.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "52799e0aaf10287049c461ec1f586b44b9ae11182a1db039f072774e8fab413f",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_populate_inventory_from_namespace.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d0c1f87cc2ed2a736aa768644f64f978907ca13ff7ec947237e8739fc0a69e4b",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_get_ssh_services_for_namespace.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "63e83efd030a3b091bb1f0938a5fb7bd7cb7fa4c694a6d4a1d855fbe023f33de",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_parse.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ae08248459897f109aa47b3856507c797c4ac94196b1fc320717d2b5e23487ce",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_set_vars_from_vmi.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7a8cfc962bee7d993d2594655f7af9d636ad527a3364bcd93e79f78a0dd29c34",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_fetch_objects.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "79108924522c3c75a8cbe9dc1c0983036fb517e99b5b67bc5448e0051a4e6cff",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_connections_compatibility.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d48f8fe1daa44c34ca7ce5bee293e5d7139b387905ed0a61001b6c838b449582",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/constants.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "6cde24da5f74d40077520b7e070dd0f9dd67575d22107f9aa6f8023780600300",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_set_ansible_host_and_port.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a2e3e33e6c77d41c2c7b2c64facd310d788ec6c48157bf26340f91743a5e2889",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/conftest.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e1f09f65bd32ce39c1cd548d4e1074556ce057ccb51be030b8f1c5b0d1ef8bc8",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/blackbox",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/blackbox/test_kubevirt_stopped_vm.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8e0625db90f7451aefedab6e73e89bd7ea802e7df3151d4d72b209184153dda9",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/blackbox/test_kubevirt_set_composable_vars.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e166ab5c3de3acfcdab80c0faa8df4171c6e42359faf2a0327ffeaf53e0525a1",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/blackbox/test_kubevirt_ansible_connection_winrm.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e6097ed52172be038a8a6b991086d8cc948e249673c1fccf971384a01aa00e43",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_add_host.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d5deda56147dcc8b76644fcfdb759a7e2ced6a23b15c1004598f2693fdb05ccf",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d1d7ef0af446c24dba22689451c45ee2c166fcd02b7a0832ad3a7f24e3fa9543",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_verify_file.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f69eb995fae11a994a8591b62da8fa860e20d3aeac1ed480a963dcf8e2855ee9",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/inventory/test_kubevirt_set_common_vars.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "cdfa40f07ea0cd2cece7f11df032829dbefd18e13405cab60678e792c9476855",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/modules",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/modules/test_kubevirt_vmi_info.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e2b147cb4547f8678cbfa5a36830a55677703b8e9213aa3213acc9a6fc61972d",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/modules/test_kubevirt_vm.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "058e8a9c58e49c03a70862b001e3ea8d0a4a1759c076cbe91b9ae60b5f0fdc9c",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/plugins/modules/test_kubevirt_vm_info.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "00f75815413c9343ec5174fdd37d235745822b4b9d9f15edfdbcc8646123888e",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/utils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/unit/utils/ansible_module_mock.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "deb1e16ac766872d1ebb53d2b72184908eb559f9e33609f621df4e5f48dc20df",
+   "format": 1
+  },
+  {
+   "name": "tests/unit/requirements.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "f5eb8330af821b27cd29d9284f556af2e6b4aa11609de04997c6b330ffc334b7",
+   "format": 1
+  },
+  {
+   "name": "tests/integration",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vm",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vm/verify.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "172ed8057cc0303f58d20c4ea36b089bd7c9db5db2c62825689f3140772b5a9f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vm/runme.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ebb3e8d16c928112f09df7faaeb7da3a1465a4461b0271cfaaec296ca0dbd5f1",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vm/generate.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "53e8bc311350ac2a552a43eff5c5d50c88011f3caf011e37fa18193669f99f02",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vm/wait_for_vm.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7021019a1eda957690d96d741818ce1f150f16797a8e43e9dd290439bc4ffdb0",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vm/test.kubevirt.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "736e95c37a556988536ba8ec221bb75efe254ee72c9278db1748ee518268b4a2",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vm/playbook.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ad45eb95cbd1f4e9c7b2bdf5a71ae5f81f559a85c3eb1bf0240637bab89fcd24",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vm_info",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vm_info/runme.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "2e43b9fa2173413238e0dea51c1d14779fbb1dbc04b0731c70c7c09d3751fbed",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vm_info/generate.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "732d44591b53b1252631c91a130ef8921da977302cdc2a994a65c67aaf94d08c",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vm_info/playbook.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "88ba06b7b01cea27a178fc860efa6caecdbad0b7f512e0a933108cd6b0256301",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vmi_info",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vmi_info/runme.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "d1682f239bfd77e1069766204d7821f1bd326295c6ceccd5330c53dbf7452d90",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vmi_info/generate.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "732d44591b53b1252631c91a130ef8921da977302cdc2a994a65c67aaf94d08c",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/kubevirt_vmi_info/playbook.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e1a6ba433755ccea780a927f7f0deffd34585f762aef06e21609912af5168480",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/inventory_kubevirt",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/inventory_kubevirt/verify.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ebf18c109f3a9b46cc9f51bc1e45d8b2865232ee85853575e7aeea1525a358ef",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/inventory_kubevirt/cleanup.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "25ff60c31ec38f40526c64bafa3e62ab5c6b9e998a99e43a1bbad5058b87585f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/inventory_kubevirt/runme.sh",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "abdc7288099dac7b1e9c8f49bc5f1d0c5f81c82a916f5b896b8b5dc841edca4f",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/inventory_kubevirt/test.net.kubevirt.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7551fe12b80127692106f669e00ef14a64488c335d8258b6fc8809c6cc5ece6b",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/inventory_kubevirt/generate.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "427fe13ebf5279a5b19dd4bff6767c65027de42729a910baa6f207d91f502296",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/inventory_kubevirt/test.cache.kubevirt.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "8b630d3c81156391eb1b19b7d719300e069ad501b23eb0e3323829df045114a3",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/inventory_kubevirt/test.kubevirt.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "24b93f25882db296a917273a81611a956735f32745ff2eb3ddfbd1b546c2d78a",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/inventory_kubevirt/test.label.kubevirt.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "161ab72ae316b8f01e556d16202a5187412a3cd8aaae874071b00c4b5b276d6b",
+   "format": 1
+  },
+  {
+   "name": "tests/integration/targets/inventory_kubevirt/playbook.yml.j2",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "671dd04f8ee9b55c11683148b88b488e15091b7e27e1a4076719294485034201",
+   "format": 1
+  },
+  {
+   "name": "tests/config.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0aed55394b3e938bd5b509a00d97a95a3f720e2fe4c2794effc0a39d5715b68e",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.16.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "20ee06daa2490efded5220e6b7224229ef365dc032949223df123578dfb796ad",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.15.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "20ee06daa2490efded5220e6b7224229ef365dc032949223df123578dfb796ad",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.18.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "20ee06daa2490efded5220e6b7224229ef365dc032949223df123578dfb796ad",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.17.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "20ee06daa2490efded5220e6b7224229ef365dc032949223df123578dfb796ad",
+   "format": 1
+  },
+  {
+   "name": "tests/sanity/ignore-2.14.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "20ee06daa2490efded5220e6b7224229ef365dc032949223df123578dfb796ad",
+   "format": 1
+  },
+  {
+   "name": "plugins",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/inventory",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/inventory/kubevirt.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "7fe261acf9f0554e61f2ebc671b473090471eea02e52d3b51374efc0895fd706",
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/module_utils/info.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "db9c084ce0a9e6c3767a3248341ffb0da8aa396e9444b4334d1b1133435fc292",
+   "format": 1
+  },
+  {
+   "name": "plugins/doc_fragments",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/doc_fragments/kubevirt_auth_options.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "9e4fdbffa701524d7e5c12ed8dc0ca22409323bb562a49823c71340881bbe05b",
+   "format": 1
+  },
+  {
+   "name": "plugins/doc_fragments/__init__.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/kubevirt_vmi_info.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "ea2157e7acd6bf47d6555bdaea79ea0e8d2d0b2c990ccfd09926d815e5dc447e",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/kubevirt_vm_info.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "96c714c6030a8c140f1824232eb0ee3661792e5811c5f62db4927fa837792959",
+   "format": 1
+  },
+  {
+   "name": "plugins/modules/kubevirt_vm.py",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a81d949ddc0a6242ef769a5d00853d062a9695a5ead7fd46845a43597e2deb2b",
+   "format": 1
+  },
+  {
+   "name": "docs",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "docs/docsite",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "docs/docsite/links.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "a9acea5da1000b17053411d00cc488e797bc4d4daca79fb1fba3442478108c4d",
+   "format": 1
+  },
+  {
+   "name": "docs/CHANGELOG.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "62c13c254311e18e45a2c8fafdb0829ce9713d4b834d7eb109e2f81efbeec4c6",
+   "format": 1
+  },
+  {
+   "name": "docs/index.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "149ae4bc5132efefaf6ce3cf906e502e0911e4fe19e31af7fd3481e03ff06c8b",
+   "format": 1
+  },
+  {
+   "name": "docs/CHANGELOG.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "c2b4309fc14d77f785e51ee7ac39fef427f88075a4464f35a69ec756a988df8f",
+   "format": 1
+  },
+  {
+   "name": "docs/releasing.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "3e7253741227bc9b2be9e08fd77db000a125ce0d282ce5b2eb7be68c1106bae0",
+   "format": 1
+  },
+  {
+   "name": "docs/testing.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "30601b17dc383017f45355a8701e8e00a7aeea9723279cce4daac8d24b7eeb8e",
+   "format": 1
+  },
+  {
+   "name": "CHANGELOG.rst",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "62c13c254311e18e45a2c8fafdb0829ce9713d4b834d7eb109e2f81efbeec4c6",
+   "format": 1
+  },
+  {
+   "name": "meta",
+   "ftype": "dir",
+   "chksum_type": null,
+   "chksum_sha256": null,
+   "format": 1
+  },
+  {
+   "name": "meta/runtime.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "16fee19238e61fab14a7974fd79800cd659367bbc8b052d9f0b190108f6a2c53",
+   "format": 1
+  },
+  {
+   "name": "LICENSE",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "5febf914b9f9eed690207764788b0660d5a6ceefdf6f9fb2d8e47bdac3ffefa3",
+   "format": 1
+  },
+  {
+   "name": "README.md",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "4f746c3a4e33a0ec777bcce8faa37cc133cac58975c5440b67df8348402c65b6",
+   "format": 1
+  },
+  {
+   "name": "requirements.txt",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "155efdc0a00f7a4afd5c77fc6c9eee576f9d3d66c14dcf4ca162631e8312a8d6",
+   "format": 1
+  },
+  {
+   "name": "requirements.yml",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "85bf3fa14bae60acadb0582a53be3c638336454af3f2d16411d692583503a6e6",
+   "format": 1
+  },
+  {
+   "name": "renovate.json",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "0968986f0f58012cce402e492d15ffd598b08a29a16b4e6dfb868df4c3949bca",
+   "format": 1
+  }
+ ],
+ "format": 1
+}

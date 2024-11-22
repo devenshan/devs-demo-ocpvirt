@@ -1,0 +1,8 @@
+.DS_Store
+rh
+ocp_secret_key.yml
+ee/context
+collections/ansible_collections
+collections/ansible_collections/*
+ansible_collections
+ansible_collections/*

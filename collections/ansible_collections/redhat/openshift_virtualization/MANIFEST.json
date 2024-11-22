@@ -1,0 +1,38 @@
+{
+ "collection_info": {
+  "namespace": "redhat",
+  "name": "openshift_virtualization",
+  "version": "2.1.0",
+  "authors": [
+   "KubeVirt Project (kubevirt.io)"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "api",
+   "k8s",
+   "kubernetes",
+   "kubevirt",
+   "virtualization",
+   "cloud",
+   "infrastructure"
+  ],
+  "description": "Lean Ansible bindings for OpenShift Virtualization",
+  "license": [],
+  "license_file": "LICENSE",
+  "dependencies": {
+   "kubernetes.core": ">=3.1.0,<6.0.0"
+  },
+  "repository": "https://github.com/kubevirt/kubevirt.core",
+  "documentation": "https://docs.openshift.com/container-platform/latest/virt/about_virt/about-virt.html",
+  "homepage": "https://www.redhat.com/en/technologies/cloud-computing/openshift/virtualization",
+  "issues": "https://github.com/kubevirt/kubevirt.core/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "65cf96e7af3d25652b643f1fb70f3ae723192f34a462a425064c4a6bda382461",
+  "format": 1
+ },
+ "format": 1
+}

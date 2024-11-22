@@ -1,0 +1,66 @@
+---
+- name: Create OCPVIRT VM 
+  hosts: localhost
+  gather_facts: false
+
+  collections:
+    - redhat.openshift_virtualization
+    - kubernetes.core
+    - redhat.openshift
+
+  tasks:
+
+#    - name: Get an existing VirtualMachine
+#      redhat.openshift_virtualization.kubevirt_vm_info:
+#        name: winweb01
+#        namespace: vmimported-user1
+#        validate_certs: 'false'
+#      register: default_testvm
+
+    - name: Create a VirtualMachine with a DataVolume template
+      redhat.openshift_virtualization.kubevirt_vm:
+        state: present
+        name: rhel-9-mina-22
+        namespace: mina
+        labels:
+          app: cbademo
+        instancetype:
+          name: u1.large
+        preference:
+          name: rhel.9
+        validate_certs: false
+        data_volume_templates:
+          - metadata:
+              name: rhel-9-mina-22
+            spec:
+              sourceRef:
+                kind: DataSource
+                name: rhel9
+                namespace: openshift-virtualization-os-images
+              storage:
+                resources:
+                  requests:
+                    storage: 30Gi
+        spec:
+          accessCredentials:
+            - sshPublicKey:
+                propagationMethod:
+                  noCloud: {}
+                source:
+                  secret:
+                    secretName: ssh-key-vm
+          domain:
+            devices: {}
+          volumes:
+            - dataVolume:
+                name: rhel-9-mina-22
+              name: rootdisk
+            - cloudInitNoCloud:
+                userData: |-
+                  #cloud-config
+                  user: cloud-user
+                  password: x8ws-dcgf-yfx8
+                  chpasswd: { expire: False }
+              name: cloudinitdisk
+        wait: true
+

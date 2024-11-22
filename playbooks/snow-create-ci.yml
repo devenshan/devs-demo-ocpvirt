@@ -1,0 +1,38 @@
+---
+- name: Create SNOW CI
+  hosts: localhost
+  gather_facts: false
+
+  collections:
+    - itsm.servicenow
+
+  tasks:
+
+    - name: Create a configuration item
+      servicenow.itsm.configuration_item:
+        name: "test0004"
+        sys_class_name: cmdb_ci_server
+        environment: production
+        category: Virtual Machine
+        ip_address: "192.16.1.100"
+        mac_address: "aa:bb:cc:22:33:44"
+        serial_number: "SN123456790"
+        short_description: "Red Hat - CBA Demo"
+        install_status: "Pending Install"
+        operational_status: "Non-Operational"
+        other:
+          manufacturer: "ACME Americas"
+          location: "Australia"
+          virtual: true
+          ram: "16"
+          cpu_name: "arm64"
+          cpu_count: "4"
+          cpu_core_count: "8"
+          cpu_type: "betengan"
+      register: new_ci
+
+    - name: Retrieve a specific configuration item by name
+      servicenow.itsm.configuration_item_info:
+        name: "test0003"
+        sys_class_name: cmdb_ci_server
+      register: result
