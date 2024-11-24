@@ -7,8 +7,8 @@
         category: Virtual Machine
         serial_number: "SN123456790"
         short_description: "Red Hat - CBA Demo"
-        install_status: "Installed"
-        operational_status: "Ready"
+        install_status: "installed"
+        operational_status: "ready"
         ip_address: "{{ v_net_ipaddr }}"
         mac_address: "{{ v_net_mac }}"
         other:

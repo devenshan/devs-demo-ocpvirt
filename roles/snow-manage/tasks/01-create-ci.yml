@@ -8,8 +8,8 @@
         category: Virtual Machine
         serial_number: "SN123456790"
         short_description: "Red Hat - CBA Demo"
-        install_status: "Pending Install"
-        operational_status: "Non-Operational"
+        install_status: "pending install"
+        operational_status: "non-operational"
         other:
           manufacturer: "ACME Americas"
           location: "{{ v_vm_location }}"
