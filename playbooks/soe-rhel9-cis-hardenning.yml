@@ -4,6 +4,10 @@
   become: true
   become_method: sudo
 
+  collections:
+    - community.general 
+    - ansible.builtin
+
   tasks: 
 
     - name: Apply RHEL {{ ansible_distribution_major_version }}  CIS Compliance Hardenning
