@@ -1,0 +1,6 @@
+---
+collections:
+  - name: redhat.openshift_virtualization
+    version: 2.1.0
+  - name: redhat.openshift
+    version: 4.0.0
