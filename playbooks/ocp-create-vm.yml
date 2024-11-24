@@ -7,11 +7,22 @@
     - redhat.openshift_virtualization
     - kubernetes.core
     - redhat.openshift
-  
-  tasks:
+ 
 
+  vars:
+    v_vm_name: minatest01
+    v_vm_namespace: mina
+    v_vm_label: cbademo
+    v_vm_instancetype: u1.large
+    v_vm_preference: rhel.9
+    v_vm_datastore: rhel9
+    v_vm_os_disk_size: '30'
+    v_vm_location: Australia
+    v_lcy_environment: Production
+ 
+  tasks:
 
     - name: Create VM on OCP cluster
       ansible.builtin.include_role:
-        name: ../roles/ocpvirt-manage
+        name: "../roles/ocpvirt-manage"
         tasks_from: 01-create-vm.yml
