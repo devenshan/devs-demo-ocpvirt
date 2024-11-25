@@ -1,0 +1,26 @@
+---
+- name: Apply RHEL OS configs
+  hosts: all
+  become: true
+  become_method: sudo
+  collections:
+    - community.general
+
+     
+  tasks:
+
+
+    - name: Perform a full system update (install new RPMs and update existing ones)
+      ansible.builtin.dnf:
+        name: 'httpd'
+        state: latest
+        update_cache: yes  # Update the DNF cache before installing
+      register: patching_result
+
+    - name: Check if the system needs a reboot
+      ansible.builtin.reboot:
+        reboot_timeout: 600  # Wait up to 10 minutes for the system to reboot
+        test_command: 'uname -a'
+      when: patching_result.changed and patching_result.rc == 0 
+      register: reboot_result
+
