@@ -28,10 +28,10 @@
       register: job_details
 
     - set_fact:
-        tower_parent_workflow_url: "https://{{ api_tower }}/execution/jobs/workflow/{{ tower_parent_workflow_id }}/output/{{ job_details.json.summary_fields.source_workflow_job.id }}"
+        tower_parent_workflow_id: "{{ job_details.json.summary_fields.source_workflow_job.id }}"
 
     - set_fact:
-        tower_parent_workflow_id: "{{ job_details.json.summary_fields.source_workflow_job.id }}"
+        tower_parent_workflow_url: "https://{{ api_tower }}/execution/jobs/workflow/{{ tower_parent_workflow_id }}/output/"
 
     
     - name: Setting Global Job ID Variable
