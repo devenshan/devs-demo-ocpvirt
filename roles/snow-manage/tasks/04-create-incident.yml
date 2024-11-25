@@ -1,0 +1,19 @@
+---
+    - name: Create a new incident
+      servicenow.itsm.incident:
+        instance:
+          host: https://dev187583.service-now.com
+          username: admin
+          password: 'jsHoCG$G^t99'
+        caller: admin
+        short_description: "Failure - Failed to Provision {{ v_vm_name }}"
+#        description: "Provisioning workflow {{ v_aap_flow }} failed. Please login to AAP and troublshoot further"
+        impact: low
+        urgency: high
+        other:
+         assignment_group: "Platform Admins"
+      register: snow_inc_created
+
+    - debug:
+        msg: "Provisioning Workflow Failed to Provision. INCIDENT {{ snow_inc_created.record.number }} is created"
+

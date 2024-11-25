@@ -1,0 +1,17 @@
+---
+- name: Create Incident in SNOW 
+  hosts: localhost
+  gather_facts: false
+
+  collections:
+    - itsm.servicenow
+
+     
+  tasks:
+
+    - name: Create VM on OCP cluster
+      ansible.builtin.include_role:
+        name: ../roles/snow-manage
+        tasks_from: 04-create-incident.yml
+
+
