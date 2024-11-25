@@ -7,7 +7,7 @@
           password: 'jsHoCG$G^t99'
         caller: admin
         short_description: "Failure - Failed to Provision {{ v_vm_name }}"
-#        description: "Provisioning workflow {{ v_aap_flow }} failed. Please login to AAP and troublshoot further"
+        description: "Provisioning workflow {{ v_tower_parent_workflow_url }} failed. Please login to AAP and troublshoot further"
         impact: low
         urgency: high
         other:
