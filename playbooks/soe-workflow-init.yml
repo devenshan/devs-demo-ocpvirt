@@ -1,0 +1,46 @@
+---
+- name: Initialize Automation workflow 
+  hosts: localhost
+  connection: local
+
+
+
+
+
+
+  tasks:
+
+    - name: Setting Global Job ID Variable
+      set_stats:
+        data:
+          tower_job_id:  "{{ tower_job_id }}"
+
+    - set_fact:
+        api_tower: '{{ lookup("env", "TOWER_HOST").split("//")[1] }}'
+
+    - name: Get Parent Workflow Job ID
+      uri:
+        url: '{{ lookup("env", "TOWER_HOST") }}/api/v2/jobs/{{ tower_job_id }}'
+        validate_certs: no
+        method: GET
+        status_code: 200
+        return_content: yes
+        body_format: json
+        user: '{{ lookup("env", "TOWER_USERNAME") }}'
+        password: '{{ lookup("env", "TOWER_PASSWORD") }}'
+        force_basic_auth: true
+      register: job_details
+
+    - set_fact:
+        tower_parent_workflow_url: "{{ job_details.json.related.source_workflow_job }}"
+
+    - set_fact:
+        tower_parent_workflow_id: "{{ tower_parent_workflow_url.split('/')[4] }}"
+
+    - name: Setting Global Job ID Variable
+      set_stats:
+        data:
+          tower_parent_workflow_id:  "{{ tower_parent_workflow_id }}"
+          tower_parent_workflow_url: "{{ tower_parent_workflow_url }}"
+          api_tower: "{{ api_tower }}"
+
