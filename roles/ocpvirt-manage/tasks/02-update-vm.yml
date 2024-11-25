@@ -1,16 +1,41 @@
 ---
-    - name: Shutdown VM
-      redhat.openshift_virtualization.kubevirt_vm:
-        state: present
+    - name: Ensure the VM is Stopped
+      redhat.openshift.k8s:
+        api_version: kubevirt.io/v1
+        kind: VirtualMachine
         name: "{{ v_vm_name }}"
         namespace: "{{ v_vm_namespace }}"
-        running: false
+        merge_type: merge
         validate_certs: false
-        wait: true
-        wait_timeout: 300
+        resource_definition:
+          spec:
+            running: false
+      register: start_result
 
-    - pause:
-        seconds: 30
+    - name: Wait for the VM to stop
+      k8s_info:
+        api_version: kubevirt.io/v1
+        kind: VirtualMachineInstance
+        namespace: "{{ v_vm_namespace }}"
+        name: "{{ v_vm_name }}"
+        validate_certs: false
+      register: vmi_info
+      until: vmi_info.resources | length == 0
+      retries: 10
+      delay: 10
+
+#    - name: Shutdown VM
+#      redhat.openshift_virtualization.kubevirt_vm:
+#        state: present
+#        name: "{{ v_vm_name }}"
+#        namespace: "{{ v_vm_namespace }}"
+#        running: false
+#        validate_certs: false
+#        wait: true
+#        wait_timeout: 300
+#
+#    - pause:
+#        seconds: 30
 
     - name: Re-label the VM to Live
       redhat.openshift_virtualization.kubevirt_vm:
@@ -24,28 +49,3 @@
         running: true
         wait: true
         wait_timeout: 300
-
-    - name: Ensure the VM is stopped
-      redhat.openshift.k8s:
-        api_version: kubevirt.io/v1
-        kind: VirtualMachine
-        name: "{{ v_vm_name }}"
-        namespace: "{{ v_vm_namespace }}"
-        merge_type: merge
-        validate_certs: false
-        resource_definition:
-          spec:
-            running: false
-      register: stop_result
-
-    - name: Wait for the VM to stop
-      k8s_info:
-        api_version: kubevirt.io/v1
-        kind: VirtualMachineInstance
-        namespace: "{{ v_vm_namespace }}"
-        name: "{{ v_vm_name }}"
-        validate_certs: false
-      register: vmi_info
-      until: vmi_info.resources | length == 0
-      retries: 10
-      delay: 10
