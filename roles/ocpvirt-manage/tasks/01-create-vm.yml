@@ -105,5 +105,5 @@
           v_vm_name: "{{ v_vm_name }}"
           v_vm_namespace: "{{ v_vm_namespace }}"
           v_vm_os_type: "{{ v_vm_os_type }}"
-        per_host: true
+        per_host: false
 
