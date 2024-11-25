@@ -1,0 +1,17 @@
+---
+- name: Install various Agents and integration software 
+  hosts: all
+  become: true
+  become_method: sudo
+  collections:
+    - community.general
+
+  vars_files:
+    - ../vault/secrets.yml
+     
+  tasks:
+
+    - name: Subscribe the system to RHSM
+      ansible.builtin.include_role:
+        name: ../roles/integrations-manage
+        tasks_from: 01_splunk.yml
