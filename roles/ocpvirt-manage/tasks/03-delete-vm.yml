@@ -1,2 +1,7 @@
 ---
 
+    - name: Delete a VirtualMachine
+      redhat.openshift_virtualization.kubevirt_vm:
+        name: "{{ v_vm_name }}"
+        namespace: "{{ v_vm_namespace }}"
+        state: absent

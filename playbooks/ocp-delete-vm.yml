@@ -1,0 +1,20 @@
+---
+- name: Create OCPVIRT VM 
+  hosts: localhost
+  gather_facts: false
+
+  collections:
+    - redhat.openshift_virtualization
+    - kubernetes.core
+    - redhat.openshift
+ 
+  vars_files:
+    - ../vault/secrets.yml
+
+
+  tasks:
+
+    - name: Delete VM on OCP cluster
+      ansible.builtin.include_role:
+        name: "../roles/ocpvirt-manage"
+        tasks_from: 03-delete-vm.yml
