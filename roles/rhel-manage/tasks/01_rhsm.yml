@@ -1,8 +1,23 @@
 ---
 
-- name: Register to subscription manager
-  redhat_subscription:
-    state: present
-    username: "{{ v_submanager_user }}"
-    password: "{{ v_submanager_pass }}"
-    auto_attach: true
+    - name: Register to subscription manager
+      redhat_subscription:
+        state: present
+        username: "{{ v_submanager_user }}"
+        password: "{{ v_submanager_pass }}"
+        auto_attach: true
+
+    - name: Replace NOPASSWD with password requirement for cloud-user
+      lineinfile:
+        path: /etc/sudoers.d/90-cloud-init-users
+        regexp: '^cloud-user\s+ALL=\(ALL\)\s+NOPASSWD:ALL'
+        line: 'cloud-user ALL=(ALL) ALL'
+        owner: root
+        group: root
+        mode: '0440'
+
+    - name: Perform a full system update (install new RPMs and update existing ones)
+      dnf:
+        name: '*'
+        state: latest
+        update_cache: yes

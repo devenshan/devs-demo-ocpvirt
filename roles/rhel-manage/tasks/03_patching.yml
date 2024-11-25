@@ -1,0 +1,7 @@
+---
+
+    - name: Perform a full system update (install new RPMs and update existing ones)
+      dnf:
+        name: '*'
+        state: latest
+        update_cache: yes
