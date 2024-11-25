@@ -35,12 +35,13 @@
         tower_parent_workflow_url: "{{ job_details.json.related.source_workflow_job }}"
 
     - set_fact:
-        tower_parent_workflow_id: "{{ tower_parent_workflow_url.split('/')[4] }}"
+        tower_parent_workflow_id: "{{ tower_parent_workflow_url.split('/')[5] }}"
 
     - name: Setting Global Job ID Variable
       set_stats:
         data:
-          tower_parent_workflow_id:  "{{ tower_parent_workflow_id }}"
-          tower_parent_workflow_url: "{{ tower_parent_workflow_url }}"
-          api_tower: "{{ api_tower }}"
+          v_tower_parent_workflow_id:  "{{ tower_parent_workflow_id }}"
+          v_tower_parent_workflow_url: "{{ tower_parent_workflow_url }}"
+          v_api_tower: "{{ api_tower }}"
+        per_host: false
 
