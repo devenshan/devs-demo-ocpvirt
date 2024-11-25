@@ -16,7 +16,7 @@
           location: "{{ v_vm_location }}"
           virtual: true
           ram: "{{ v_memory_size }}"
-          cpu_name: "{{ v_vm_cpu_model }}"
+          cpu_name: "{{ v_cpu_model }}"
           cpu_count: "{{ v_cpu_sockets }}"
           cpu_core_count: "{{ v_cpu_cores }}"
           cpu_type: "{{ v_vm_arch }}"
