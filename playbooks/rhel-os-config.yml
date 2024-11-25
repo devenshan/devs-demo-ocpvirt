@@ -10,7 +10,14 @@
      
   tasks:
 
-    - name: Create VM on OCP cluster
-      ansible.builtin.include_role:
-        name: ../roles/rhel-manage
-        tasks_from: 01_rhsm.yml
+#    - name: Create VM on OCP cluster
+#      ansible.builtin.include_role:
+#        name: ../roles/rhel-manage
+#        tasks_from: 01_rhsm.yml
+
+    - name: Register to subscription manager
+      redhat_subscription:
+        state: present
+        username: "{{ v_submanager_user }}"
+        password: "{{ v_submanager_pass }}"
+        auto_attach: true
