@@ -1,0 +1,18 @@
+---
+    - name: Close change request
+      servicenow.itsm.change_request:
+        number: "{{ v_change_request_number }}"
+        state: closed
+        close_code: "successful"
+        close_notes: "Closed"
+        impact: low
+        other:
+          assignment_group: "Platform Admins"
+          work_end: '2024-11-28 16:19:21'
+          work_notes: 'Ran Ansible Automation Workflow'
+          work_start: '2024-11-28 15:05:46'
+      register: close_crq 
+
+    - debug:
+        msg: "Change Request Closed Successfully : {{ close_crq.record.number }} "
+      ignore_errors: true

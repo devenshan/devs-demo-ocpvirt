@@ -1,0 +1,10 @@
+---
+    - name: Updage Change Request
+      servicenow.itsm.change_request:
+        number: "{{ v_change_request_number }}"
+        state: "implement"
+     register: update_crq
+
+    - debug:
+        msg: "Change Request Updated : {{ update_crq.record.number }} "
+      ignore_errors: true

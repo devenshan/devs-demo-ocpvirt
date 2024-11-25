@@ -1,0 +1,22 @@
+---
+    - name: Create a new incident
+      servicenow.itsm.change_request:
+        type: standard
+        category: software
+        risk: low
+        state: new
+        requested_by: admin
+        short_description: Deploy new RHEL9 VM
+        description: "Provisioning new demovm01 running RHEL9 to OCP virt cluster"
+        priority: moderate
+        risk: low
+        impact: low
+        other:
+          expected_start: 2025-11-28
+          assignment_group: "Platform Admins"
+          start_date: '2024-11-28 15:00:00'
+          end_date: '2024-11-28 18:00:00'
+      register: create_crq
+
+    - debug:
+        msg: "Change Request Created : {{ create_crq.record.number }} "

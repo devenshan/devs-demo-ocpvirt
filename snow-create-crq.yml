@@ -1,0 +1,49 @@
+---
+- name: Create Incident in SNOW 
+  hosts: localhost
+  gather_facts: false
+
+  collections:
+    - itsm.servicenow
+
+     
+  tasks:
+
+#    - name: Create VM on OCP cluster
+#      ansible.builtin.include_role:
+#        name: ../roles/snow-manage
+#        tasks_from: 04-create-incident.yml
+
+    - name: Retrieve a specific change request by its sys_id
+      servicenow.itsm.change_request_info:
+        instance:
+          host: https://dev187583.service-now.com
+          username: admin
+          password: 'jsHoCG$G^t99'
+        number: CHG0030002
+      register: crqresult
+
+
+    - debug:
+        var: crqresult
+
+    - debug:
+        var: crqresult.records[0].state
+
+    - name: Create change request
+      servicenow.itsm.change_request:
+        instance:
+          host: https://dev187583.service-now.com
+          username: admin
+          password: 'jsHoCG$G^t99'  
+        number: CHG0030003  
+        state: closed
+        close_code: "successful"
+        close_notes: "Closed"
+        impact: low
+        other:
+          assignment_group: "Platform Admins"
+          work_end: '2024-11-28 16:19:21'
+          work_notes: 'Ran Ansible Automation Workflow'
+          work_notes_list: ''
+          work_start: '2024-11-28 15:05:46' 

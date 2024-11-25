@@ -11,9 +11,5 @@
     - name: Update Change Request to Implement state
       ansible.builtin.include_role:
         name: ../roles/snow-manage
-        tasks_from: 08-update-crq.yml
+        tasks_from: 09-close-crq.yml
 
-    - name: Create CMDB CI 
-      ansible.builtin.include_role:
-        name: ../roles/snow-manage
-        tasks_from: 01-create-ci.yml
