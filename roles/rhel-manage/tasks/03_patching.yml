@@ -5,3 +5,12 @@
         name: '*'
         state: latest
         update_cache: yes
+      register: patching_result
+
+    - name: Check if the system needs a reboot
+      ansible.builtin.reboot:
+        reboot_timeout: 600  # Wait up to 10 minutes for the system to reboot
+        test_command: 'uname -a'
+        msg: "Reboot initiated by Ansible for the Demo Workshop"
+      when: patching_result.changed and patching_result.rc == 0
+      register: reboot_result
