@@ -3,7 +3,7 @@
   hosts: all
 
   collections:
-    - community.general
+    - ../collections/community.general
 
   vars_files:
     - ../vault/secrets.yml
