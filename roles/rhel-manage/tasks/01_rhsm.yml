@@ -1,0 +1,8 @@
+---
+
+- name: Register to subscription manager
+  community.general.redhat_subscription:
+    state: present
+    username: "{{ v_submanager_user }}"
+    password: "{{ v_submanager_pass }}"
+    auto_attach: true
