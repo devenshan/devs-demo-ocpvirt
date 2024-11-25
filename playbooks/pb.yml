@@ -24,3 +24,15 @@
       when: patching_result.changed and patching_result.rc == 0 
       register: reboot_result
 
+    - name: Perform a full system update (install new RPMs and update existing ones)
+      ansible.builtin.dnf:
+        name: 'https://download.splunk.com/products/universalforwarder/releases/9.3.2/linux/splunkforwarder-9.3.2-d8bb32809498.aarch64.rpm'
+        state: installed
+        update_cache: yes  # Update the DNF cache before installing
+        disable_gpg_check: true
+      register: splunk_result
+
+    - name: Start splunk services
+      ansible.builtin.shell: /opt/splunkforwarder/bin/splunk start --accept-license --no-prompt && /opt/splunkforwarder/bin/splunk enable boot-start
+      register: splunk_start_result
+      when: splunk_result is changed and splunk_result.rc == 0

@@ -11,7 +11,7 @@
      
   tasks:
 
-    - name: Subscribe the system to RHSM
+    - name: Install and configure Splunk forwarder
       ansible.builtin.include_role:
         name: ../roles/integrations-manage
         tasks_from: 01_splunk.yml
