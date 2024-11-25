@@ -1,5 +1,5 @@
 ---
-    - name: Perform a full system update (install new RPMs and update existing ones)
+    - name: Install Splunk RPM
       ansible.builtin.dnf:
         name: 'https://download.splunk.com/products/universalforwarder/releases/9.3.2/linux/splunkforwarder-9.3.2-d8bb32809498.x86_64.rpm'
         state: installed

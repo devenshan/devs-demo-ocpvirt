@@ -74,6 +74,7 @@
       ansible.builtin.set_fact:
         v_cpu_cores: "{{ item.status.currentCPUTopology.cores }}"
         v_cpu_sockets: "{{ item.status.currentCPUTopology.sockets }}"
+        v_cpu_name: "{{ item.spec.domain.cpu.model }}"
         v_memory_size: "{{ item.status.memory.guestRequested }}"
         v_guesos_kernel: "{{ item.status.guestOSInfo.kernelRelease }}"
         v_guesos_version: "{{ item.status.guestOSInfo.versionId }}"
@@ -93,6 +94,7 @@
         data:
           v_cpu_cores: "{{ v_cpu_cores }}"
           v_cpu_sockets: "{{ v_cpu_sockets }}"
+          v_cpu_name: "{{ v_cpu_name }}"
           v_memory_size: "{{ v_memory_size }}"
           v_guesos_kernel: "{{ v_guesos_kernel }}"
           v_guesos_version: "{{ v_guesos_version }}"
