@@ -1,10 +1,10 @@
 ---
-    - name: Generate the VM random password
-      set_fact:
-        v_vm_vnc_secret: >-
-          {{ (lookup('password', '/dev/null length=4 chars=ascii_lowercase+digits') + '-' +
-              lookup('password', '/dev/null length=4 chars=ascii_lowercase+digits') + '-' +
-              lookup('password', '/dev/null length=4 chars=ascii_lowercase+digits')) }}
+#    - name: Generate the VM random password
+#      set_fact:
+#        v_vm_vnc_secret: >-
+#          {{ (lookup('password', '/dev/null length=4 chars=ascii_lowercase+digits') + '-' +
+#              lookup('password', '/dev/null length=4 chars=ascii_lowercase+digits') + '-' +
+#              lookup('password', '/dev/null length=4 chars=ascii_lowercase+digits')) }}
 
     - name: Create a VirtualMachine on OCP Virt
       redhat.openshift_virtualization.kubevirt_vm:

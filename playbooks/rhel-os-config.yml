@@ -16,8 +16,13 @@
         name: ../roles/rhel-manage
         tasks_from: 01_rhsm.yml
 
-    - name: Subscribe the system to RHSM
+    - name: Apply baseline OS Configs 
       ansible.builtin.include_role:
         name: ../roles/rhel-manage
-        tasks_from: 01_rhsm.yml
+        tasks_from: 02_os_configs.yml
 
+
+    - name: Apply the latest OS Patches 
+      ansible.builtin.include_role:
+        name: ../roles/rhel-manage
+        tasks_from: 03_patching.yml
