@@ -4,10 +4,6 @@
   connection: local
 
 
-
-
-
-
   tasks:
 
     - name: Setting Global Job ID Variable
@@ -32,11 +28,12 @@
       register: job_details
 
     - set_fact:
-        tower_parent_workflow_url: "{{ job_details.json.related.source_workflow_job }}"
+        tower_parent_workflow_url: "https://{{ api_tower }}/execution/jobs/workflow/{{ tower_parent_workflow_id }}/output/{{ job_details.json.summary_fields.source_workflow_job.id }}"
 
     - set_fact:
-        tower_parent_workflow_id: "{{ tower_parent_workflow_url.split('/')[5] }}"
+        tower_parent_workflow_id: "{{ job_details.json.summary_fields.source_workflow_job.id }}"
 
+    
     - name: Setting Global Job ID Variable
       set_stats:
         data:
