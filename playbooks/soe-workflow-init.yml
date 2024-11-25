@@ -20,7 +20,7 @@
 
     - name: Get Parent Workflow Job ID
       uri:
-        url: '{{ lookup("env", "TOWER_HOST") }}/api/v2/jobs/{{ tower_job_id }}'
+        url: '{{ lookup("env", "TOWER_HOST") }}/api/controller/v2/jobs/{{ tower_job_id }}'
         validate_certs: no
         method: GET
         status_code: 200
