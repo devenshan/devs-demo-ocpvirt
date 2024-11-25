@@ -1,7 +1,7 @@
 ---
 
 - name: Register to subscription manager
-  community.general.redhat_subscription:
+  redhat_subscription:
     state: present
     username: "{{ v_submanager_user }}"
     password: "{{ v_submanager_pass }}"
