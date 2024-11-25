@@ -1,0 +1,16 @@
+---
+- name: Apply RHEL OS configs
+  hosts: all
+
+  collections:
+    - community.general
+
+  vars_files:
+    - ../vault/secrets.yml
+     
+  tasks:
+
+    - name: Create VM on OCP cluster
+      ansible.builtin.include_role:
+        name: ../roles/rhel-manage
+        tasks_from: 01_rhsm.yml
