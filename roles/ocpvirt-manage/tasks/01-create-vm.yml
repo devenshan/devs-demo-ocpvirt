@@ -8,6 +8,7 @@
 
     - name: Create a VirtualMachine on OCP Virt
       redhat.openshift_virtualization.kubevirt_vm:
+        host: 'https://api.cluster-zg5hp.dynamic.redhatworkshops.io:6443'
         state: present
         name: "{{ v_vm_name }}"
         namespace: "{{ v_vm_namespace }}"
