@@ -1,0 +1,15 @@
+---
+- name: Create SNOW CI
+  hosts: localhost
+  gather_facts: false
+
+  collections:
+    - itsm.servicenow
+
+  tasks:
+
+    - name: Update Change Request to Implement state
+      ansible.builtin.include_role:
+        name: ../roles/snow-manage
+        tasks_from: 07-create-crq.yml
+

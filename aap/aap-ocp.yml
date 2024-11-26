@@ -1,0 +1,32 @@
+apiVersion: aap.ansible.com/v1alpha1
+kind: AnsibleAutomationPlatform
+metadata:
+  name: aap-automation
+  namespace: aap
+spec:
+  hostname: aap-automation
+  ingress_type: Route
+  no_log: true
+  redis_mode: standalone
+  route_tls_termination_mechanism: Edge
+  service_type: ClusterIP
+  lightspeed:
+    disabled: true
+  hub:
+    disabled: true
+  eda:
+    disabled: true 
+  api:
+    log_level: INFO
+    replicas: 1
+  database:
+    postgres_data_volume_init: false
+    postgres_storage_class: ocs-external-storagecluster-ceph-rbd
+    resource_requirements:
+      requests:
+        cpu: 2000m
+        ephemeral-storage: 100Mi
+        memory: 512Mi
+    storage_requirements:
+      requests:
+        storage: 100Gi
