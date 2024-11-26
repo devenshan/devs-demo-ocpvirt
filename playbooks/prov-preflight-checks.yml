@@ -1,0 +1,28 @@
+---
+- name: PreFlight Checks
+  hosts: localhost
+  gather_facts: false
+
+  collections:
+    - redhat.openshift_virtualization
+    - kubernetes.core
+    - redhat.openshift
+ 
+  vars_files:
+    - ../vault/secrets.yml
+
+  tasks:
+
+    - name: Check if there is a VM with the same name
+      redhat.openshift_virtualization.kubevirt_vmi_info:
+        host: "{{ v_ocp_cluster_api }}"
+        name: "{{ v_vm_name }}"
+        namespace: "{{ v_vm_namespace }}"
+        validate_certs: 'false'
+      register: v_created_vm
+
+    - name: Fail since the VM is not unique 
+      fail:
+        msg: "A Virtual Machine with the same name {{ v_vm_name }} in Namespace {{ v_vm_namespace }} already Exists .. Bye Bye ! "
+      when:  v_created_vm.resources is defined and v_created_vm.resources | length > 0
+

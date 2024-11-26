@@ -12,6 +12,7 @@
     - ../vault/secrets.yml
 
 #  vars:
+#    v_ocp_cluster_api: https://api.cluster-4tj5d.dynamic.redhatworkshops.io:6443
 #    v_change_request_number: CHG0030005
 #    v_vm_name: minatest01
 #    v_vm_namespace: mina
@@ -22,7 +23,7 @@
 #    v_vm_os_disk_size: '30'
 #    v_vm_location: Australia
 #    v_lcy_environment: Production
- 
+
   tasks:
 
     - name: Create VM on OCP cluster
