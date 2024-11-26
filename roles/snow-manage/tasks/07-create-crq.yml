@@ -1,5 +1,5 @@
 ---
-    - name: Create a new incident
+    - name: Create a new Change Request
       servicenow.itsm.change_request:
         type: standard
         category: software
