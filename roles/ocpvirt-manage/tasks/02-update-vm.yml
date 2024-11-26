@@ -1,6 +1,7 @@
 ---
     - name: Ensure the VM is Stopped
       redhat.openshift.k8s:
+        host: "{{ v_ocp_cluster_api }}"
         api_version: kubevirt.io/v1
         kind: VirtualMachine
         name: "{{ v_vm_name }}"
@@ -14,6 +15,7 @@
 
     - name: Wait for the VM to stop
       k8s_info:
+        host: "{{ v_ocp_cluster_api }}"
         api_version: kubevirt.io/v1
         kind: VirtualMachineInstance
         namespace: "{{ v_vm_namespace }}"
@@ -39,6 +41,7 @@
 
     - name: Re-label the VM to Live
       redhat.openshift_virtualization.kubevirt_vm:
+        host: "{{ v_ocp_cluster_api }}"
         state: present
         name: "{{ v_vm_name }}"
         namespace: "{{ v_vm_namespace }}"
