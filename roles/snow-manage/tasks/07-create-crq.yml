@@ -14,7 +14,7 @@
           assignment_group: "{{ v_change_assignment_group }}"
           start_date: "{{ v_change_start_date }}"
           end_date: "{{ v_change_end_date }}"
-     register: create_crq
+      register: create_crq
 
 
     - debug:
