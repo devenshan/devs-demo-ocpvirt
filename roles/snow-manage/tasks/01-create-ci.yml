@@ -1,5 +1,15 @@
 ---
 
+    - name: Retrieve change requests by number
+      servicenow.itsm.change_request_info:
+        number: "{{ v_change_request_number }}"
+      register: crq_info
+
+    - name: Fail IF the CRQ is not in Scheduled State
+      fail:
+        msg: "Change Request is NOT YET ready for implementation .. Bye for now ! "
+      when:  crq_info.records[0].state != "scheduled"
+
     - name: Create configuration item (CI) in SNOW
       servicenow.itsm.configuration_item:
         name: "{{ v_vm_name }}"
