@@ -16,7 +16,7 @@
         sys_class_name: cmdb_ci_server
         environment: "{{ v_lcy_environment }}"
         category: Virtual Machine
-        serial_number: "SN123456790"
+        serial_number: "SN-123456790"
         short_description: "Red Hat - CBA Demo"
         install_status: "pending install"
         operational_status: "non-operational"
