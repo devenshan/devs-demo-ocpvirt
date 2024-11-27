@@ -8,7 +8,7 @@
     - name: Fail IF the CRQ is not in Scheduled State
       fail:
         msg: "Change Request is NOT YET ready for implementation .. Bye for now ! "
-      when:  crq_info.records[0].state != "scheduled"
+      when:  crq_info.records[0].state not in ["scheduled", "implement"]
 
     - name: Create configuration item (CI) in SNOW
       servicenow.itsm.configuration_item:
