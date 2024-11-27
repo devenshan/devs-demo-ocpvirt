@@ -11,7 +11,14 @@
       when:  crq_info.records[0].state != "scheduled"
 
 
-    - name: Updage Change Request
+    - name: Link new CI to CRQ
+      servicenow.itsm.change_request:
+        number: "{{ v_change_request_number }}"
+        other:
+          cmdb_ci: "{{ new_ci_details.records[0].sys_id }}" 
+      register: update_crq
+
+    - name: Updage Change Request ti Implement Phase
       servicenow.itsm.change_request:
         number: "{{ v_change_request_number }}"
         state: "implement"

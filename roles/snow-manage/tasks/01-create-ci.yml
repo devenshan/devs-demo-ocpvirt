@@ -20,5 +20,5 @@
       servicenow.itsm.configuration_item_info:
         name: "{{ v_vm_name }}"
         sys_class_name: cmdb_ci_server
-      register: result
+      register: new_ci_details
 
