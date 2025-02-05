@@ -1,0 +1,143 @@
+---
+## AAP Blueprint ##
+
+
+aap_organizations:
+  - name: InfraMGMT
+    description: Infrastructure Management
+
+controller_execution_environments:
+  - name: 'OCP Virtualization Execution Environment'
+    image: 'quay.io/mancubus77/ee-virt:latest'
+    pull: missing
+    organization: "{{ aap_organizations[0].name }}"
+
+controller_credential_types:
+  - name: ServiceNow
+    description: Service Now Credential Type
+    inputs:
+      fields:
+        - id: SN_HOST
+          type: string
+          label: Snow Instance
+        - id: SN_USERNAME
+          type: string
+          label: Username
+        - id: SN_PASSWORD
+          type: string
+          label: Password
+          secret: true
+      required:
+        - SN_HOST
+        - SN_USERNAME
+        - SN_PASSWORD
+    injectors:
+      env:
+        SN_HOST: !unsafe '{{ SN_HOST }}'
+        SN_PASSWORD: !unsafe '{{ SN_PASSWORD }}'
+        SN_USERNAME: !unsafe '{{ SN_USERNAME }}'
+
+controller_credentials:
+  - name: Github Credentials
+    organization: "{{ aap_organizations[0].name }}"
+    state: present
+    credential_type: Source Control
+    inputs:
+      username: "{{ v_git_username }}"
+      password: "{{ v_git_token }}"
+#      ssh_key_data: "{{ lookup('file', '/tmp/id_rsa') }}"
+#      ssh_key_unlock: "passphrase"
+
+  - name: RHEL Machine
+    organization: "{{ aap_organizations[0].name }}"
+    state: present
+    credential_type: Machine
+    inputs:
+      username: mina
+      password: changeme
+      become_method: sudo
+      become_username: root
+      become_password: changeme
+
+  - name: ServiceNow Credentials
+    organization: "{{ aap_organizations[0].name }}"
+    state: present
+    credential_type: 'ServiceNow'
+    inputs:
+      SN_HOST: "{{ v_snow_instance }}"
+      SN_PASSWORD: "{{ v_snow_password }}"
+      SN_USERNAME: "{{ v_snow_username }}"
+
+  - name: AAP Credentials
+    organization: "{{ aap_organizations[0].name }}"
+    state: present
+    credential_type: 'Red Hat Ansible Automation Platform'
+    inputs:
+      host: "{{ aap_hostname }}"
+      password: "{{ aap_password }}"
+      username: "{{ aap_username }}"
+
+  - name: OCP Cluster
+    organization: "{{ aap_organizations[0].name }}"
+    state: present
+    credential_type: 'OpenShift or Kubernetes API Bearer Token'
+    inputs:
+      host: "{{ v_ocp_cluster_api }}"
+      bearer_token: "{{ v_ocp_cluster_api_token }}"
+
+
+
+controller_inventories:
+  - name: 'Demo Inventory - Build'
+    organization: "{{ aap_organizations[0].name }}"
+    description: created by Ansible Playbook - for Demo
+
+  - name: 'Demo Inventory - Prod'
+    organization: "{{ aap_organizations[0].name }}"
+    description: created by Ansible Playbook - for Demo
+
+
+controller_inventory_sources:
+  - name: "OCP Virt Build"
+    source: openshift_virtualization
+    inventory: 'Demo Inventory - Build'
+    credential: 'OCP Cluster'
+    description: created by Ansible controller
+    execution_environment: 'OCP Virtualization Execution Environment'
+    overwrite: true
+    update_on_launch: false
+    update_cache_timeout: 0
+    source_vars: 
+      connections:
+        - namespaces:
+            - demo
+          label_selector: phase=build
+
+  - name: "OCP Virt Prod"
+    source: openshift_virtualization
+    inventory: 'Demo Inventory - Prod'
+    credential: 'OCP Cluster'
+    description: created by Ansible controller
+    execution_environment: 'OCP Virtualization Execution Environment'
+    overwrite: true
+    update_on_launch: false
+    update_cache_timeout: 0
+    source_vars:
+      connections:
+        - namespaces:
+            - demo
+          label_selector: phase=live
+
+
+controller_projects:
+  - name: Provisioning Demo
+    organization: "{{ aap_organizations[0].name }}"
+    scm_branch: main
+    scm_clean: true
+    scm_delete_on_update: 'no'
+    scm_type: git
+    scm_update_on_launch: 'no'
+    scm_url: 'https://github.com/agenthorus/demo-ocpvirt.git'
+    credential: 'Github Credentials'
+    wait: true
+

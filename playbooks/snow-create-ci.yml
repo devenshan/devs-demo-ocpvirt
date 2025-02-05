@@ -4,9 +4,35 @@
   gather_facts: false
 
   collections:
-    - itsm.servicenow
+    - servicenow.itsm
+
+  vars:
+
+#    tower_job_id: 256
+#    v_tower_parent_workflow_id: '253'
+#    v_tower_parent_workflow_url: >-
+#      https://aap-automation-aap.apps.cluster-4tj5d.dynamic.redhatworkshops.io/execution/jobs/workflow/253/output/
+#    v_api_tower: aap-automation-aap.apps.cluster-4tj5d.dynamic.redhatworkshops.io
+#    v_ocp_cluster_api: https://api.cluster-4tj5d.dynamic.redhatworkshops.io:6443
+#    v_change_request_number: CHG0030014
+#    v_vm_name: demovm0000001
+#    v_vm_namespace: mina
+#    v_vm_label: cbademo
+#    v_vm_instancetype: u1.large
+#    v_vm_preference: rhel.9
+#    v_vm_datastore: rhel9
+#    v_vm_os_disk_size: 30
+#    v_vm_location: Australia
+#    v_lcy_environment: Production
 
   tasks:
+
+    - name: Retrieve a CI Details
+      servicenow.itsm.configuration_item_info:
+        name: "{{ v_vm_name }}"
+        sys_class_name: cmdb_ci_server
+      register: new_ci_details
+      ignore_errors: true
 
     - name: Create CMDB CI
       ansible.builtin.include_role:

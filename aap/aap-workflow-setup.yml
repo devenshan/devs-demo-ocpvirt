@@ -1,0 +1,69 @@
+---
+- name: Initialize Automation workflow 
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  collections: 
+    - infra.aap_configuration
+    - ansible.platform
+
+  pre_tasks:
+    - name: Import AAP blueprint
+      include_vars:
+        dir: ../vars
+        extensions: ["yml"]
+
+  tasks: 
+
+    - name: Create Organization
+      ansible.platform.organization:
+        gateway_hostname: "{{ aap_hostname }}"
+        gateway_username: "{{ aap_username }}"
+        gateway_password: "{{ aap_password }}"   
+        name: "{{ item.name }}"
+        description: "{{ item.description | default('') }}" 
+      loop: "{{ aap_organizations }}"
+      when: aap_organizations is defined
+
+    - name: Create EE
+      ansible.builtin.include_role:
+        name: controller_execution_environments
+      when: controller_execution_environments is defined
+
+    - name: Create cred types
+      ansible.builtin.include_role:
+        name: controller_credential_types
+      when: controller_credential_types is defined
+
+    - name: Create Credentials
+      ansible.builtin.include_role:
+        name: controller_credentials
+      when: controller_credentials is defined
+      no_log: false 
+
+    - name: Create inventories
+      ansible.builtin.include_role:
+        name: controller_inventories
+      when: controller_inventories is defined
+
+    - name: Create inventory sources
+      ansible.builtin.include_role:
+        name: controller_inventory_sources
+      when: controller_inventory_sources is defined
+
+    - name: Create Project
+      ansible.builtin.include_role:
+        name: controller_projects
+      when: controller_projects is defined
+
+## Add Sync 
+
+    - name: Create Job Templates
+      ansible.builtin.include_role:
+        name: controller_job_templates
+      when: controller_templates is defined
+
+    - name: Create Workflow Job Templates
+      ansible.builtin.include_role:
+        name: controller_workflow_job_templates
+      when: controller_workflows is defined

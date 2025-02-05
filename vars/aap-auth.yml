@@ -1,0 +1,17 @@
+## ChangeMe vars ##
+
+v_git_username: 'minageo83@gmail.com'
+v_git_token: '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'
+
+v_ocp_cluster_api: 'https://api.cluster-sqbwv.dynamic.redhatworkshops.io:6443'
+v_ocp_cluster_api_token: 'sha256~yN87Lf14UJwnAR4Cjoa0PA9eSeaGgVpH98aEesqMVUA'
+
+v_snow_instance: 'https://dev272658.service-now.com'
+v_snow_username: 'admin'
+v_snow_password: '=XUM!Vjj1ee3'
+
+aap_username: 'admin'
+aap_password: 'VvthDWSQgzYTvV8V7hlDdltFmh784Qsz'
+aap_hostname: 'https://aap-automation-aap.apps.cluster-sqbwv.dynamic.redhatworkshops.io'
+aap_validate_certs: 'false'
+gateway_configuration_users_secure_logging: false

@@ -4,7 +4,7 @@
   gather_facts: false
 
   collections:
-    - itsm.servicenow
+    - servicenow.itsm
 
      
   tasks:

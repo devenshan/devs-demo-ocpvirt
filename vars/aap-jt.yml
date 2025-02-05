@@ -1,0 +1,134 @@
+---
+
+controller_templates:
+  - name: 'JT - Workflow Init'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/soe-workflow-init.yml'
+    credentials:
+    - AAP Credentials
+ 
+  - name: 'JT - SNOW - CMDB Update'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/snow-update-ci.yml'
+    credentials:
+    - ServiceNow Credentials
+ 
+  - name: 'JT - SNOW - Create CI'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/snow-create-ci.yml'
+    credentials:
+    - ServiceNow Credentials
+
+  - name: 'JT - SNOW - Raise Incident'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/snow-create-inc.yml'
+    credentials:
+    - ServiceNow Credentials
+
+  - name: 'JT - SNOW - Close Change'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/snow-close-change.yml'
+    credentials:
+    - ServiceNow Credentials
+
+  - name: 'JT - SNOW - Create Change'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/snow-create-change.yml'
+    credentials:
+    - ServiceNow Credentials
+
+  - name: 'JT - OCP - Create VM'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/ocp-create-vm.yml'
+    execution_environment: 'OCP Virtualization Execution Environment'
+    credentials:
+    - OCP Cluster
+
+  - name: 'JT - OCP - Delete VM'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/ocp-delete-vm.yml'
+    execution_environment: 'OCP Virtualization Execution Environment'
+    credentials:
+    - OCP Cluster
+
+  - name: 'JT - OCP - Relabel VM'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/ocp-update-vm.yml'
+    execution_environment: 'OCP Virtualization Execution Environment'
+    credentials:
+    - OCP Cluster
+
+  - name: 'JT - OCP - Preflight Checks'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/prov-preflight-checks.yml'
+    execution_environment: 'OCP Virtualization Execution Environment'
+    credentials:
+    - OCP Cluster
+
+  - name: 'JT - RHEL - Apply OS Config'
+    job_type: run
+    ask_inventory_on_launch: true
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/rhel-os-config.yml'
+    credentials:
+    - RHEL Machine
+
+  - name: 'JT - RHEL - Third Party Integrations'
+    job_type: run
+    ask_inventory_on_launch: true
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/rhel-integrations.yml'
+    credentials:
+    - RHEL Machine
+
+  - name: 'JT - RHEL - CIS Hardening'
+    job_type: run
+    ask_inventory_on_launch: true
+    project: 'Provisioning Demo'
+    playbook: 'playbooks/soe-rhel9-cis-hardenning.yml'
+    credentials:
+    - RHEL Machine
+
+  - name: 'JT - Notify Success'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Demo Project'
+    playbook: 'hello_world.yml'
+    credentials:
+    - AAP Credentials
+
+  - name: 'JT - Notify Failure'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Demo Project'
+    playbook: 'hello_world.yml'
+    credentials:
+    - AAP Credentials
+
+  - name: 'JT - IPAM - Infoblox'
+    job_type: run
+    inventory: Demo Inventory
+    project: 'Demo Project'
+    playbook: 'hello_world.yml'
+    credentials:
+    - AAP Credentials

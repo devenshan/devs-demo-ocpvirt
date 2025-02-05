@@ -1,10 +1,6 @@
 ---
     - name: Create a new incident
       servicenow.itsm.incident:
-        instance:
-          host: https://dev187583.service-now.com
-          username: admin
-          password: 'jsHoCG$G^t99'
         caller: admin
         short_description: "Failure - Failed to Provision {{ v_vm_name }}"
         description: "Provisioning workflow {{ v_tower_parent_workflow_url }} failed. Please login to AAP and troublshoot further"

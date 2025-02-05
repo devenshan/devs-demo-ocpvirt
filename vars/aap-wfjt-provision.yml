@@ -1,0 +1,417 @@
+---
+controller_workflows:
+
+##### VM Provisioning Workflow #########
+
+  - name: WFJT - Provision VM 
+    description: A workflow to Provision VM on OCP Virt
+    survey_enabled: true
+    allow_simultaneous: true
+    ask_variables_on_launch: false
+    inventory:
+    limit:
+    scm_branch:
+    ask_inventory_on_launch: false
+    ask_scm_branch_on_launch: false
+    ask_limit_on_launch: false
+    webhook_service: ''
+    webhook_credential:
+    organization: "{{ aap_organizations[0].name }}"
+    schedules: []
+    simplified_workflow_nodes:
+      - all_parents_must_converge: false
+        identifier: "Retrieve VM Blueprint"
+        unified_job_template: "Provisioning Demo"
+        credentials: []
+        success_nodes: 
+          - "Initialize Workflow"
+        failure_nodes: []
+        always_nodes: []
+      - all_parents_must_converge: false
+        identifier: "Initialize Workflow"
+        unified_job_template: 'JT - Workflow Init'
+        credentials: []
+        success_nodes: 
+          - 'Reserve IP Address'
+          - 'Snow - Create CI'
+          - 'Pre Flight Checks'
+        failure_nodes: []
+        always_nodes: []
+
+      - all_parents_must_converge: false
+        identifier: "Reserve IP Address"
+        unified_job_template: 'JT - IPAM - Infoblox'
+        credentials: []
+        success_nodes:
+          - 'Create VM'
+        failure_nodes:
+          - 'SNOW INC'
+        always_nodes: []
+      - all_parents_must_converge: false
+        identifier: "Snow - Create CI"
+        unified_job_template: 'JT - SNOW - Create CI'
+        credentials: []
+        success_nodes:
+          - 'Create VM'
+        failure_nodes:
+          - 'SNOW INC'
+        always_nodes: []
+      - all_parents_must_converge: false
+        identifier: "Pre Flight Checks"
+        unified_job_template: 'JT - OCP - Preflight Checks'
+        credentials: []
+        success_nodes: 
+          - 'Create VM'
+        failure_nodes:
+          - 'SNOW INC'
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: "Create VM"
+        unified_job_template: 'JT - OCP - Create VM'
+        credentials: []
+        success_nodes:
+          - 'Refresh Build inventory'
+        failure_nodes:
+          - 'Cleanup Failed VM'
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: "Refresh Build inventory"
+        unified_job_template: 'OCP Virt Build'
+        credentials: []
+        success_nodes:
+          - 'Apply OS Config'
+        failure_nodes:
+          - 'Cleanup Failed VM'
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: "Apply OS Config"
+        unified_job_template: 'JT - RHEL - Apply OS Config'
+        inventory: 'Demo Inventory - Build'
+        success_nodes:
+          - 'Security Hardening'
+        failure_nodes:
+          - 'Cleanup Failed VM'
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: 'Security Hardening'
+        unified_job_template: 'JT - RHEL - CIS Hardening'
+        inventory: 'Demo Inventory - Build'
+        success_nodes:
+          - 'Third Party Integrations'
+        failure_nodes:
+          - 'Cleanup Failed VM'
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: 'Third Party Integrations'
+        unified_job_template: 'JT - RHEL - Third Party Integrations'
+        inventory: 'Demo Inventory - Build'
+        success_nodes: 
+          - 'SNOW CMDB Updates'
+          - 'Relabel-Tag VM'
+        failure_nodes:
+          - 'Cleanup Failed VM'
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: 'SNOW CMDB Updates'
+        unified_job_template: 'JT - SNOW - CMDB Update'
+        credentials: []
+        success_nodes: 
+          - 'SNOW Close CRQ'
+        failure_nodes: []
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: 'Relabel-Tag VM'
+        unified_job_template: 'JT - OCP - Relabel VM'
+        credentials: []
+        success_nodes: 
+          - 'SNOW Close CRQ'
+        failure_nodes: []
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: 'SNOW Close CRQ'
+        unified_job_template: 'JT - SNOW - Close Change'
+        credentials: []
+        success_nodes:
+          - 'Notify Success'
+        failure_nodes: []
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: 'Notify Success'
+        unified_job_template: 'JT - Notify Success'
+        credentials: []
+        success_nodes: []
+        failure_nodes: []
+        always_nodes: []
+
+      - all_parents_must_converge: false
+        identifier: 'SNOW INC'
+        unified_job_template: 'JT - SNOW - Raise Incident'
+        credentials: []
+        success_nodes: []
+        failure_nodes: []
+        always_nodes: []
+
+      - all_parents_must_converge: false
+        identifier: 'Cleanup Failed VM'
+        unified_job_template: 'JT - OCP - Delete VM'
+        credentials: []
+        success_nodes: []
+        failure_nodes: []
+        always_nodes:
+          - 'Raise INC'
+
+      - all_parents_must_converge: false
+        identifier: 'Raise INC'
+        unified_job_template: 'JT - SNOW - Raise Incident'
+        credentials: []
+        success_nodes: []
+        failure_nodes: []
+        always_nodes:
+          - 'Notify Failure'
+
+      - all_parents_must_converge: true
+        identifier: 'Notify Failure'
+        unified_job_template: 'JT - Notify Failure'
+        credentials: []
+        success_nodes: []
+        failure_nodes: []
+        always_nodes: []
+
+    survey_spec:
+      name: VM Provisioning Request Form
+      description: ''
+      spec:
+        - max: 32
+          min: 0
+          type: text
+          choices: []
+          default: ""
+          required: true
+          variable: v_change_request_number
+          new_question: true
+          question_name: Change Request Number
+          question_description: ""
+        - max: 128
+          min: 0
+          type: text
+          choices: []
+          default: ""
+          required: true
+          variable: v_ocp_cluster_api
+          new_question: true
+          question_name: OCP Cluster Name
+          question_description: API Endpoint for the OCP Cluster
+        - max: 64
+          min: 2
+          type: text
+          choices: []
+          default: demo
+          required: true
+          variable: v_vm_namespace
+          new_question: true
+          question_name: VM Namespace
+          question_description: ""
+        - max: 63
+          min: 2
+          type: text
+          choices: []
+          default: demovm001
+          required: true
+          variable: v_vm_name
+          new_question: true
+          question_name: VM Hostname
+          question_description: ""
+        - max: 1024
+          min: 0
+          type: multiplechoice
+          choices:
+            - u1.medium
+            - u1.large
+            - u1.xlarge
+          default: u1.medium
+          required: true
+          variable: v_vm_instancetype
+          new_question: true
+          question_name: VM Instance Type
+          question_description: ""
+        - max: 1024
+          min: 0
+          type: multiplechoice
+          choices:
+            - rhel.9
+            - rhel.8
+            - win.2022
+          default: rhel.9
+          required: true
+          variable: v_vm_preference
+          new_question: true
+          question_name: VM OS Type
+          question_description: ""
+        - max: 1024
+          min: 0
+          type: multiplechoice
+          choices:
+            - rhel8
+            - rhel9
+            - win2022
+          default: rhel9
+          required: true
+          variable: v_vm_datastore
+          new_question: false
+          question_name: VM Datastore
+          question_description: ""
+        - max: 100
+          min: 30
+          type: integer
+          choices: []
+          default: 30
+          required: true
+          variable: v_vm_os_disk_size
+          new_question: true
+          question_name: VM DiskO (OS Disk) Size
+          question_description: ""
+        - max: 1024
+          min: 0
+          type: multiplechoice
+          choices:
+            - Australia
+            - Singapore
+          default: Australia
+          required: true
+          variable: v_vm_location
+          new_question: true
+          question_name: VM Location
+          question_description: ""
+        - max: 1024
+          min: 0
+          type: multiplechoice
+          choices:
+            - Sandbox
+            - Non Production
+            - Staging
+            - Production
+          default: Production
+          required: true
+          variable: v_lcy_environment
+          new_question: true
+          question_name: VM Lifecycle Environment
+          question_description: ""
+        - max: 1024
+          min: 2
+          type: text
+          choices: []
+          default: cbademo
+          required: true
+          variable: v_vm_label
+          new_question: true
+          question_name: VM Application Tags
+          question_description: ""
+
+#### Day 2 Workflow #####
+
+  - name: WFJT - Configuration Management Day 2 Ops
+    description: A workflow to Manage Day 2 Operations of the provisioned VM
+    survey_enabled: false
+    allow_simultaneous: false
+    ask_variables_on_launch: false
+    inventory:
+    limit:
+    scm_branch:
+    ask_inventory_on_launch: false
+    ask_scm_branch_on_launch: false
+    ask_limit_on_launch: false
+    webhook_service: ''
+    webhook_credential:
+    organization: "{{ aap_organizations[0].name }}"
+    schedules: []
+    simplified_workflow_nodes:
+      - all_parents_must_converge: false
+        identifier: "Retrieve VM Blueprint"
+        unified_job_template: "Provisioning Demo"
+        credentials: []
+        success_nodes:
+          - "Initialize Workflow"
+        failure_nodes: []
+        always_nodes: []
+      - all_parents_must_converge: false
+        identifier: "Initialize Workflow"
+        unified_job_template: 'JT - Workflow Init'
+        credentials: []
+        success_nodes:
+          - "Refresh Build inventory"
+        failure_nodes: []
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: "Refresh Build inventory"
+        unified_job_template: 'OCP Virt Prod'
+        credentials: []
+        success_nodes:
+          - 'Apply OS Config'
+        failure_nodes:
+          - 'SNOW INC'
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: "Apply OS Config"
+        unified_job_template: 'JT - RHEL - Apply OS Config'
+        inventory: 'Demo Inventory - Prod'
+        success_nodes:
+          - 'Security Hardening'
+        failure_nodes:
+          - 'SNOW INC'
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: 'Security Hardening'
+        unified_job_template: 'JT - RHEL - CIS Hardening'
+        inventory: 'Demo Inventory - Prod'
+        success_nodes:
+          - 'Third Party Integrations'
+        failure_nodes:
+          - 'SNOW INC'
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: 'Third Party Integrations'
+        unified_job_template: 'JT - RHEL - Third Party Integrations'
+        inventory: 'Demo Inventory - Prod'
+        success_nodes:
+          - 'Notify Success'
+        failure_nodes:
+          - 'SNOW INC'
+        always_nodes: []
+
+      - all_parents_must_converge: true
+        identifier: 'Notify Success'
+        unified_job_template: 'JT - Notify Success'
+        credentials: []
+        success_nodes: []
+        failure_nodes: []
+        always_nodes: []
+
+      - all_parents_must_converge: false
+        identifier: 'SNOW INC'
+        unified_job_template: 'JT - SNOW - Raise Incident'
+        credentials: []
+        success_nodes: []
+        failure_nodes: []
+        always_nodes:
+          - 'Notify Failure'
+
+      - all_parents_must_converge: true
+        identifier: 'Notify Failure'
+        unified_job_template: 'JT - Notify Failure'
+        credentials: []
+        success_nodes: []
+        failure_nodes: []
+        always_nodes: []

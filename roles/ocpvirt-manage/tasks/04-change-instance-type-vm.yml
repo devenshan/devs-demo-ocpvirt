@@ -1,0 +1,46 @@
+---
+
+    - name: Get  VM information
+      redhat.openshift_virtualization.kubevirt_vmi_info:
+        host: "{{ v_ocp_cluster_api }}"
+        name: "{{ v_vm_name }}"
+        namespace: "{{ v_vm_namespace }}"
+        validate_certs: 'false'
+      register: v_created_vm
+
+    - name: Create Controller Revision
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: apps/v1
+          kind: ControllerRevision
+          metadata:
+            name: "{{ v_vm_name }}-{{ v_vm_instancetype_new }}"
+            namespace: "{{ v_vm_namespace }}"
+          data:
+            apiVersion: instancetype.kubevirt.io/v1beta1
+            kind: VirtualMachineClusterInstancetype
+            metadata:
+              name: "{{ v_vm_instancetype_new }}"
+            spec:
+              cpu:
+                guest: "{{v_new_cpu|int}}"
+              memory:
+                guest: "{{ v_vm_resources[v_vm_instancetype_new].memory }}"
+
+    - name: Change VM instance type
+      kubernetes.core.k8s_json_patch:
+        validate_certs: false
+        api_version: kubevirt.io/v1
+        kind: VirtualMachine
+        name: "{{ v_vm_name }}"
+        namespace: "{{ v_vm_namespace }}"
+        patch:
+          - op: replace
+            path: /spec/instancetype/name
+            value: "{{ v_vm_instancetype_new }}"
+          - op: replace
+            path: /spec/instancetype/revisionName
+            value: "{{ v_vm_name }}-{{ v_vm_instancetype_new }}"
+
+

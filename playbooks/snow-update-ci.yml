@@ -4,11 +4,9 @@
   gather_facts: false
 
   collections:
-    - itsm.servicenow
+    - servicenow.itsm
 
   vars:
-     v_lcy_environment: production
-     v_vm_name: "test010" 
      
   tasks:
 

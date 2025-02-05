@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: ControllerRevision
+metadata:
+  name: demovm0001-u1.xlarge
+  namespace: mina
+data:
+  apiVersion: instancetype.kubevirt.io/v1beta1
+  kind: VirtualMachineClusterInstancetype
+  metadata:
+    name: u1.xlarge
+  spec:
+    cpu:
+      guest: 4
+    memory:
+      guest: 16Gi

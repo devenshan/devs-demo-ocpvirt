@@ -6,6 +6,7 @@
         other:
           cmdb_ci: "{{ new_ci_details.records[0].sys_id }}" 
       register: update_crq
+      ignore_errors: true
 
     - name: Updage Change Request ti Implement Phase
       servicenow.itsm.change_request:
