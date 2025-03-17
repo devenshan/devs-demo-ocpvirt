@@ -1,7 +1,7 @@
 ## ChangeMe vars ##
 
 v_git_username: 'devenshan@gmail.com'
-v_git_token: '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'
+v_git_token: ''
 
 v_ocp_cluster_api: 'https://api.cluster-6rhgh.dynamic.redhatworkshops.io:6443'
 v_ocp_cluster_api_token: 'sha256~cVAvrVZdXoeBFh7Gw9Dtw-r_rFBKy7yOx2C12sMZFlo'
