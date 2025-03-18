@@ -1,17 +1,17 @@
 ## ChangeMe vars ##
 
 v_git_username: 'devenshan@gmail.com'
-v_git_token: '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'
+v_git_token: ''
 
 v_ocp_cluster_api: 'https://api.cluster-6rhgh.dynamic.redhatworkshops.io:6443'
-v_ocp_cluster_api_token: 'sha256~cVAvrVZdXoeBFh7Gw9Dtw-r_rFBKy7yOx2C12sMZFlo'
+v_ocp_cluster_api_token: ''
 
 v_snow_instance: 'https://dev299264.service-now.com'
 v_snow_username: 'admin'
-v_snow_password: 'HbkcS/rF8+O5'
+v_snow_password: ''
 
 aap_username: 'admin'
-aap_password: 'VvthDWSQgzYTvV8V7hlDdltFmh784Qsz'
+aap_password: ''
 aap_hostname: 'https://aap-automation-aap.apps.cluster-6rhgh.dynamic.redhatworkshops.io'
 aap_validate_certs: 'false'
 gateway_configuration_users_secure_logging: false
